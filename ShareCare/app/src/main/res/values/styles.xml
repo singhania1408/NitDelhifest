@@ -13,6 +13,36 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyTextTheme_Heading">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/primarytext</item>
+    </style>
+
+    <style name="MyTextTheme_SubHeading">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/primarytext</item>
+    </style>
+
+    <style name="MyTextTheme_Content">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/primarytext</item>
+    </style>
+
+    <style name="MyTextTheme_Content2">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/primarytext</item>
+    </style>
+
+    <style name="MyTextTheme_Content3">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/primarytext</item>
+    </style>
+
+    <style name="HomeTheme" parent="AppTheme.NoActionBar">
+        <item name="android:background">@drawable/background</item>
+
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
