@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.healthpatient.patientapp.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -16,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/upper"
@@ -35,16 +31,16 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/donate"
                     android:id="@+id/donate"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/donate"
                     android:text="DONATE"
-                    android:layout_marginLeft="35dp"
-                    style="@style/MyTextTheme_Heading"
+                    android:gravity="center"
+                       style="@style/MyTextTheme_Heading"
                     />
 
             </RelativeLayout>
@@ -56,6 +52,9 @@
             android:layout_height="180dp"
             android:id="@+id/card_diagnose"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/donate_card"
             >
 
             <RelativeLayout
@@ -64,25 +63,25 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/diagnosefin"
                     android:id="@+id/diagnose"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/diagnose"
                     android:text="DIAGNOSE"
                     style="@style/MyTextTheme_Heading"
-                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
                     />
             </RelativeLayout>
 
 
         </android.support.v7.widget.CardView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/middle"
@@ -102,16 +101,16 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/acceptor"
                     android:id="@+id/take_photo"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/take_photo"
-                    android:text="TAKE"
+                    android:text="ACCEPTOR"
                     style="@style/MyTextTheme_Heading"
-                    android:layout_marginLeft="55dp"
+                    android:gravity="center"
                     />
 
             </RelativeLayout>
@@ -122,6 +121,9 @@
             android:layout_width="170dp"
             android:layout_height="180dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/take_card"
             >
 
             <RelativeLayout
@@ -130,24 +132,24 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/reportsfin"
                     android:id="@+id/report_image"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/report_image"
                     android:text="REPORTS"
                     style="@style/MyTextTheme_Heading"
-                    android:layout_marginLeft="35dp"
+                    android:gravity="center"
                     />
             </RelativeLayout>
 
 
         </android.support.v7.widget.CardView>
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lower"
@@ -170,11 +172,11 @@
                     android:id="@+id/about"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/about"
                     android:text="ABOUT US"
-                    android:layout_marginLeft="35dp"
+                    android:gravity="center"
                     style="@style/MyTextTheme_Heading"
                     />
 
@@ -186,6 +188,9 @@
             android:layout_width="170dp"
             android:layout_height="180dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/about_card"
             >
 
             <RelativeLayout
@@ -198,18 +203,18 @@
                     android:id="@+id/Facility"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/Facility"
                     android:text="NoT Decided"
                     style="@style/MyTextTheme_Heading"
-                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
                     />
             </RelativeLayout>
 
 
         </android.support.v7.widget.CardView>
 
-    </LinearLayout>
+    </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

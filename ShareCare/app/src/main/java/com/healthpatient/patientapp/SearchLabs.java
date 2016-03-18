@@ -79,13 +79,18 @@ public class SearchLabs extends AppCompatActivity {
         imageButton=(ImageButton) findViewById(R.id.imageButton);
         testcard=(CardView) findViewById(R.id.testcard);
         testlist=new ArrayList<AutoCompleteTextView>();
+        SearchTask citytask=new SearchTask();
+        citytask.execute();
+        TestTask testtask = new TestTask(0);
+        testtask.execute();
 
-        cityview.setOnClickListener(new View.OnClickListener() {
+        cityview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                SearchTask citytask=new SearchTask();
-                citytask.execute();
+                city_id = Integer.parseInt(loginList.get(position)[0]);
+                AreaTask areatask = new AreaTask(Integer.toString(city_id));
+                areatask.execute();
 
             }
         });
@@ -99,25 +104,23 @@ public class SearchLabs extends AppCompatActivity {
                 Log.v("MyApp", "Area correct");
             }
         });*/
-        areaview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cityview.getText().toString();
-                for(int i=0;i<loginList.size();i++) {
-                    if(loginList.get(i)[1].equals(cityview.getText().toString()))
-                    {
-                        city_id=Integer.parseInt(loginList.get(i)[0]);
+                areaview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cityview.getText().toString();
+                        for (int i = 0; i < loginList.size(); i++) {
+                            if (loginList.get(i)[1].equals(cityview.getText().toString())) {
+                                city_id = Integer.parseInt(loginList.get(i)[0]);
+                            }
+                        }
+                        AreaTask areatask = new AreaTask(Integer.toString(city_id));
+                        areatask.execute();
                     }
-                }
-                AreaTask areatask = new AreaTask(Integer.toString(city_id));
-                areatask.execute();
-            }
-        });
+                });
         searchview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TestTask testtask = new TestTask(0);
-                testtask.execute();
+
             }
         });
 
@@ -125,9 +128,12 @@ public class SearchLabs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createEditTextView();
+                int i=testlist.size();
+                TestTask testTask=new TestTask(i);
+                testTask.execute();
             }
         });
-
+/*
         for(int i=1;i<testlist.size();i++)
         {
             final int t=i;
@@ -139,6 +145,7 @@ public class SearchLabs extends AppCompatActivity {
                 }
             });
         }
+        */
 
     }
     protected void createEditTextView() {
@@ -476,7 +483,6 @@ public class SearchLabs extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String success) {
             addtestToAutoComplete(parsejson3(success),position);
-
         }
     }
     public List<String[]> parsejson3(String jsonResponse)
@@ -489,7 +495,7 @@ public class SearchLabs extends AppCompatActivity {
 
                 // Creating JSONObject from String
                 JSONArray jsonObjMain = alljson.getJSONArray(Constants.ALLTESTS);
-                for(int i=0;i<=jsonObjMain.length();i++)
+                for(int i=0;i<=150;i++)
                 {
                     String[] string=new String[2];
                     JSONObject city=jsonObjMain.getJSONObject(i);
