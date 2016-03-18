@@ -54,11 +54,14 @@ public class SearchLabs extends AppCompatActivity {
 
     AutoCompleteTextView cityview,areaview,searchview,testview,newView;
     List<AutoCompleteTextView> testlist;
-    int city_id,hint=0;
+    int city_id,hint=0,area_id;
+    int[] test_id;
     List<String[]> loginList;
+    List<String[]> areaList;
+    List<String[]> testListcont;
     CardView testcard;
     LinearLayout linear,outerlinear;
-    ImageButton imageButton;
+    ImageButton imageButton,searchimage;
 
 
     @Override
@@ -78,10 +81,11 @@ public class SearchLabs extends AppCompatActivity {
         outerlinear=(LinearLayout) findViewById(R.id.search_linear);
         imageButton=(ImageButton) findViewById(R.id.imageButton);
         testcard=(CardView) findViewById(R.id.testcard);
+        searchimage=(ImageButton) findViewById(R.id.searchimage);
         testlist=new ArrayList<AutoCompleteTextView>();
         SearchTask citytask=new SearchTask();
         citytask.execute();
-        TestTask testtask = new TestTask(0);
+        TestTask testtask = new TestTask(100);
         testtask.execute();
 
         cityview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -128,11 +132,36 @@ public class SearchLabs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createEditTextView();
-                int i=testlist.size();
+                int i=testlist.size()-1;
                 TestTask testTask=new TestTask(i);
                 testTask.execute();
             }
         });
+        searchimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < loginList.size(); i++) {
+                    if (loginList.get(i)[1].equals(cityview.getText().toString())) {
+                        city_id = Integer.parseInt(loginList.get(i)[0]);
+                    }
+                }
+                for (int i = 0; i < areaList.size(); i++) {
+                    if (areaList.get(i)[1].equals(areaview.getText().toString())) {
+                        area_id = Integer.parseInt(areaList.get(i)[0]);
+                    }
+                }
+                for(int j=0;j<testlist.size();j++) {
+                    for (int i = 0; i < testListcont.size(); i++) {
+                        if (testListcont.get(i)[1].equals(testlist.get(j).getText().toString())) {
+                            test_id[j] = Integer.parseInt(areaList.get(i)[0]);
+                        }
+                    }
+                }
+
+
+            }
+        });
+
 /*
         for(int i=1;i<testlist.size();i++)
         {
@@ -369,7 +398,7 @@ public class SearchLabs extends AppCompatActivity {
     }
     public List<String[]> parsejson2(String jsonResponse)
     {
-        List<String[]> loginList = new ArrayList<String[]>();
+        areaList = new ArrayList<String[]>();
         if (jsonResponse != null) {
 
             try {
@@ -381,7 +410,7 @@ public class SearchLabs extends AppCompatActivity {
                     JSONObject area=jsonObjMain.getJSONObject(i);
                     string[0]=area.getString(Constants.CITY_ID);
                     string[1]=area.getString(Constants.CITY_NAME);
-                    loginList.add(string);
+                    areaList.add(string);
                 }
 
 
@@ -392,7 +421,7 @@ public class SearchLabs extends AppCompatActivity {
             }
 
         }
-        return loginList;
+        return areaList;
     }
     private void addareaToAutoComplete(List<String[]> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
@@ -487,7 +516,7 @@ public class SearchLabs extends AppCompatActivity {
     }
     public List<String[]> parsejson3(String jsonResponse)
     {
-        List<String[]> loginList = new ArrayList<String[]>();
+        testListcont = new ArrayList<String[]>();
         if (jsonResponse != null) {
 
             try {
@@ -501,7 +530,7 @@ public class SearchLabs extends AppCompatActivity {
                     JSONObject city=jsonObjMain.getJSONObject(i);
                     string[0]=city.getString(Constants.ID);
                     string[1]=city.getString(Constants.TESTNAME);
-                    loginList.add(string);
+                    testListcont.add(string);
                 }
 
             } catch (JSONException e) {
@@ -510,7 +539,7 @@ public class SearchLabs extends AppCompatActivity {
             }
 
         }
-        return loginList;
+        return testListcont;
     }
     private void addtestToAutoComplete(List<String[]> emailAddressCollection,int position) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
@@ -522,10 +551,89 @@ public class SearchLabs extends AppCompatActivity {
                 new ArrayAdapter<>(SearchLabs.this,
                         android.R.layout.simple_dropdown_item_1line, list);
 
-        if(position==0)
+        if(position==100)
         searchview.setAdapter(adapter);
         else
         testlist.get(position).setAdapter(adapter);
+    }
+    public class SearchLabTask extends AsyncTask<Void, Void, String>
+    {
+
+        final String mlink;
+        String error=null;
+        int position;
+        HttpURLConnection conn;
+        BufferedReader bufferedReader;
+
+        SearchLabTask(int position)
+        {
+            mlink = URL1.getSearchURL();
+            this.position=position;
+        }
+        @Override
+        protected String doInBackground(Void... params) {
+
+            try
+            {
+                URL url=new URL(mlink);
+                Map<String,Object> param=new LinkedHashMap<String, Object>();
+
+                conn=(HttpURLConnection)url.openConnection();
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+                conn.setRequestMethod("GET");
+
+                InputStream inputStream = conn.getInputStream();
+
+                StringBuffer buffer = new StringBuffer();
+                if(inputStream==null){
+                    return "null_inputstream";
+                }
+
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line ;
+
+                while ( (line=bufferedReader.readLine())!=null ){
+                    buffer.append(line + '\n');
+                }
+
+                if (buffer.length() == 0) {
+                    return "null_inputstream";
+                }
+
+                String stringJSON = buffer.toString();
+                Log.v("MyApp", "JSON retured in Attendance" + stringJSON);
+
+                return stringJSON;
+
+            } catch (UnknownHostException | ConnectException e) {
+                error = "null_internet" ;
+                e.printStackTrace();
+            } catch (IOException e) {
+                error= "null_file";
+                e.printStackTrace();
+            } finally {
+                if ( conn!= null) {
+                    conn.disconnect();
+                }
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (final IOException e) {
+//                        Log.e(LOG_CAT, "ErrorClosingStream", e);
+                    }
+                }
+            }
+
+            return error;
+        }
+        @Override
+        protected void onPostExecute(final String success) {
+
+            Intent intent=new Intent(SearchLabs.this,ScheduleAppointments.class).putExtra("key",success);
+            startActivity(intent);
+        }
     }
 
 }
