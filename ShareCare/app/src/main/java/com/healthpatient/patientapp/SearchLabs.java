@@ -631,7 +631,7 @@ public class SearchLabs extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String success) {
 
-            Intent intent=new Intent(SearchLabs.this,ScheduleAppointments.class).putExtra("key",success);
+            Intent intent=new Intent(SearchLabs.this,LabActivity.class).putExtra("key",success);
             startActivity(intent);
         }
     }

@@ -30,4 +30,9 @@ public class URL1 {
         String url="/medicaltest/appsearch.json";
         return Constants.BASE_URL+url;
     }
+    public static String getProfileURL()
+    {
+        String url="/patient/profile.json";
+        return Constants.BASE_URL+url;
+    }
 }
