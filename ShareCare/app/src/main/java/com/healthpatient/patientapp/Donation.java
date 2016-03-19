@@ -46,6 +46,10 @@ public class Donation extends AppCompatActivity {
         setContentView(R.layout.activity_donation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        cityview=(AutoCompleteTextView) findViewById(R.id.city);
+        areaview=(AutoCompleteTextView) findViewById(R.id.area);
+
         SearchTask searchTask=new SearchTask();
         searchTask.execute();
         cityview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

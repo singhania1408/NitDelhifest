@@ -2,14 +2,12 @@ package com.healthpatient.patientapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class ShareCare extends AppCompatActivity {
 
     CardView diagnose,donate,about,take;
     @Override
@@ -27,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         diagnose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent=new Intent(ShareCare.this,LoginActivity.class);
                 startActivity(intent);
             }
         });
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Donation.class);
+                Intent intent=new Intent(ShareCare.this,Donation.class);
                 startActivity(intent);
             }
         });

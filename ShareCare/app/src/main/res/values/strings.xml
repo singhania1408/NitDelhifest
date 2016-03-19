@@ -28,4 +28,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_lab">LabActivity</string>
     <string name="title_activity_donation">Donation</string>
+    <string name="title_activity_about_us">AboutUs</string>
+    <string name="title_activity_acceptor">Acceptor</string>
 </resources>

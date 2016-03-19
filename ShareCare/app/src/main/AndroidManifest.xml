@@ -35,7 +35,7 @@
             android:label="@string/title_activity_schedule_appointments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ShareCare"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -51,6 +51,14 @@
         <activity
             android:name=".Donation"
             android:label="@string/title_activity_donation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AboutUs"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Acceptor"
+            android:label="@string/title_activity_acceptor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
