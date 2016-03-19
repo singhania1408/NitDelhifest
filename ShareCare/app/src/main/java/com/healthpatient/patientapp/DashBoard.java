@@ -143,7 +143,7 @@ public class DashBoard extends AppCompatActivity
         adapter.addFrag(new HomeFragment(), "Home");
         adapter.addFrag(new HomeFragment(), "MyAppointments");
         adapter.addFrag(new HomeFragment(), "Results");
-        adapter.addFrag(new ProfileFragment(), "Profile");
+        adapter.addFrag(new HomeFragment(), "Profile");
         viewPager.setAdapter(adapter);
     }
 

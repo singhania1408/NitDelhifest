@@ -17,7 +17,13 @@
         <activity
             android:name=".DashBoard"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -35,30 +41,8 @@
             android:label="@string/title_activity_schedule_appointments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ShareCare"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".LabActivity"
-            android:label="@string/title_activity_lab"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Donation"
-            android:label="@string/title_activity_donation"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AboutUs"
-            android:label="@string/title_activity_about_us"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Acceptor"
-            android:label="@string/title_activity_acceptor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

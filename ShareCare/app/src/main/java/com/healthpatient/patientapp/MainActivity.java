@@ -9,32 +9,26 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class LabActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    CardView lab1,lab2;
+    CardView diagnose,donate,about,take;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab);
-
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        lab1.setOnClickListener(new View.OnClickListener() {
+        diagnose=(CardView) findViewById(R.id.card_diagnose);
+        donate=(CardView) findViewById(R.id.donate_card);
+        about=(CardView) findViewById(R.id.about_card);
+
+        diagnose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(LabActivity.this,ScheduleAppointments.class);
-                startActivity(intent);
+                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
             }
         });
-        lab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
     }
 
 }
